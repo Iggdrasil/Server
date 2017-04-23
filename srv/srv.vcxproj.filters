@@ -51,6 +51,15 @@
     <ClInclude Include="TProxyProcessor.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="request_parser.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="request.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="header.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -72,6 +81,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="TProxyProcessor.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="request_parser.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

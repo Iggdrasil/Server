@@ -82,6 +82,9 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="header.h" />
+    <ClInclude Include="request.h" />
+    <ClInclude Include="request_parser.h" />
     <ClInclude Include="SafeQueue.h" />
     <ClInclude Include="NetParams.h" />
     <ClInclude Include="TProcessor.h" />
@@ -95,6 +98,7 @@
     <ClInclude Include="TMessage.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="request_parser.cpp" />
     <ClCompile Include="TProxyProcessor.cpp" />
     <ClCompile Include="router_service.cpp" />
     <ClCompile Include="srv.cpp" />
