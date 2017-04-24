@@ -4,7 +4,7 @@
 #include "SafeQueue.h"
 #include "TProxyProcessor.h"
 #include "TClientMessage.h"
-
+#include "request_parser.h"
 
 class router_service : public safeQueue<TClientMessage>, boost::serialization::singleton<router_service>
 {
@@ -17,6 +17,9 @@ class router_service : public safeQueue<TClientMessage>, boost::serialization::s
 	PACKET_PARAMS::PACKET_TYPE checkType(const TClientMessage& msg);
 
 	void Init();
+
+	request_parser rparser;
+
 public:
 	router_service(boost::asio::io_service& srv);
 	~router_service();

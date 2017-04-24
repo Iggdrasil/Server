@@ -3,6 +3,7 @@
 #include <iostream>
 #include <boost/chrono.hpp>
 #include <boost/thread.hpp>
+#include "request.h"
 
 using std::cout;
 using std::endl;
@@ -181,6 +182,10 @@ void router_service::svc()
 			//std::vector<char> msg;
 			//_q.front().getMessage(msg);
 			//cout << &msg[0] << endl;
+			request req;
+			std::array<char, NET_PARAMS::NetworkBufferSize> buf;
+			_q.front().getBuffer(buf);
+			rparser.parse(req, buf.begin(), buf.begin() + _q.front().getBufferLen());
 			_q.pop();
 		}
 		boost::this_thread::sleep_for(boost::chrono::milliseconds(10));
