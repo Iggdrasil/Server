@@ -11,15 +11,15 @@ protected:
 	// без соединения не можеть быть клиентского сообщения
 	tcp_connection::pointer _tcpConnPtr;
 
-	TProcessor::pProcessor _packProcessor;
+	TProcessor* _packProcessor;
 
 public:
-	TMessage(){}
+	TMessage() {}
 
-	virtual ~TMessage(){}
+	virtual ~TMessage() {};
 
-	virtual void setProcessor(TProcessor::pProcessor) = 0;
-	virtual TProcessor::pProcessor getProcessor() = 0;
+	virtual void setProcessor(TProcessor* prc) = 0;
+	virtual TProcessor* getProcessor() = 0;
 	virtual void setTcpConnection(tcp_connection::pointer) = 0;
 	virtual tcp_connection::pointer getTcpConnection() = 0;
 

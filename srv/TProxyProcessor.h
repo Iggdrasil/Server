@@ -6,5 +6,6 @@ class ProxyProcessor :
 public:
 	ProxyProcessor();
 	virtual ~ProxyProcessor();
+	bool Process(TMessage* msg);
 };
 

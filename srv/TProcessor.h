@@ -15,6 +15,6 @@ public:
 
 	virtual ~TProcessor(){}
 
-	virtual void Process(TMessage*) = 0;
+	virtual bool Process(TMessage*) = 0;
 };
 

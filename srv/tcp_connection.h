@@ -4,7 +4,6 @@
 #include <boost/function.hpp>
 #include "NetParams.h"
 #include "SafeQueue.h"
-//#include "TClientMessage.h"
 
 class tcp_connection : public boost::enable_shared_from_this<tcp_connection>
 {

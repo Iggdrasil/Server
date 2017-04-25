@@ -7,12 +7,12 @@ TClientMessage::TClientMessage(tcp_connection::pointer tcpConn)
 	_tcpConnPtr = tcpConn;
 }
 
-void TClientMessage::setProcessor(TProcessor::pProcessor proc)
+void TClientMessage::setProcessor(TProcessor* proc)
 {
 	_packProcessor = proc;
 }
 
-TProcessor::pProcessor TClientMessage::getProcessor()
+TProcessor* TClientMessage::getProcessor()
 {
 	return _packProcessor;
 }
