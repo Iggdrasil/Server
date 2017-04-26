@@ -54,12 +54,16 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;_LIB;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
+      <BrowseInformation>true</BrowseInformation>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
+    <Bscmake>
+      <PreserveSbr>true</PreserveSbr>
+    </Bscmake>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -87,6 +91,7 @@
     <ClInclude Include="request_parser.h" />
     <ClInclude Include="SafeQueue.h" />
     <ClInclude Include="NetParams.h" />
+    <ClInclude Include="tcp_client.h" />
     <ClInclude Include="TProcessor.h" />
     <ClInclude Include="TProxyProcessor.h" />
     <ClInclude Include="router_service.h" />
@@ -99,6 +104,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="request_parser.cpp" />
+    <ClCompile Include="tcp_client.cpp" />
     <ClCompile Include="TProxyProcessor.cpp" />
     <ClCompile Include="router_service.cpp" />
     <ClCompile Include="srv.cpp" />
