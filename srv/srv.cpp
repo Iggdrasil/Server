@@ -18,7 +18,7 @@ int _tmain(int argc, _TCHAR* argv[])
 		router_service rc(io_service);
 		boost::thread thr(boost::bind(&router_service::svc, &rc));
 
-        tcp_server server(io_service, &rc);
+        tcp_server server(io_service);
         io_service.run();
     }
     catch (std::exception& e)

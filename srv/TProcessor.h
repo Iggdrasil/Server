@@ -1,9 +1,9 @@
 #pragma once
 #include <boost\shared_ptr.hpp>
+#include "TMessage.h"
 
 using boost::shared_ptr;
 
-class TMessage;
 
 // Интерфейс класс процессора
 class TProcessor

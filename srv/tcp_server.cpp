@@ -6,16 +6,11 @@ tcp_server::~tcp_server()
 {
 }
 
-void tcp_server::addToQueue(tcp_connection::pointer tcpConn)
-{
-	_messageQueue->push(TClientMessage(tcpConn));
-}
 
 // ѕри создании сервера указываем ему сразу очередь, которую он запомнит
-tcp_server::tcp_server(boost::asio::io_service& ioserv, safeQueue<TClientMessage>* que)
+tcp_server::tcp_server(boost::asio::io_service& ioserv)
     :_acceptor(ioserv, boost::asio::ip::tcp::endpoint(boost::asio::ip::tcp::v4(), 4399))
 {
-	_messageQueue = que;
     start_accept();
 }
 
@@ -24,7 +19,7 @@ void tcp_server::start_accept()
 {
 
 	// √отовим новое соединение.  аждое соединение содержит указатель на очередь, где будет хранитьс€ сообщение
-    tcp_connection::pointer newConnection = tcp_connection::create(_acceptor.get_io_service(), boost::bind(&tcp_server::addToQueue, this, _1));
+    tcp_connection::pointer newConnection = tcp_connection::create(_acceptor.get_io_service());
 
 	// Ќачинаем прием
     _acceptor.async_accept(newConnection->socket(),
