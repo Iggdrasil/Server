@@ -50,9 +50,12 @@ public:
 	boost::tuple<boost::tribool, InputIterator> parse(HttpRequest& req,
 		InputIterator begin, InputIterator end)
 	{
+		reset();
+		req.header_len = 0;
 		while (begin != end)
 		{
 			boost::tribool result = consume(req, *begin++);
+			req.header_len++;
 			if (result || !result)
 				return boost::make_tuple(result, begin);
 		}

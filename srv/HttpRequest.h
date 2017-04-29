@@ -9,5 +9,7 @@ struct HttpRequest
 	int http_version_major;
 	int http_version_minor;
 	std::vector<HttpHeader> headers;
+
+	size_t header_len;
 };
 

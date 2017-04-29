@@ -22,8 +22,9 @@ bool router_service::Preprocess(TMessage * msg)
 }
 
 router_service::router_service(boost::asio::io_service& srv)
-	:_srv(srv)
+	:_srv(srv), _proxyProcessor(srv)
 {
+
 }
 
 

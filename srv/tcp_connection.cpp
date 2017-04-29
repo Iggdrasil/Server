@@ -76,7 +76,7 @@ void tcp_connection::handle_read(const boost::system::error_code& err, size_t le
     else if ( (boost::asio::error::eof == err) ||
         (boost::asio::error::connection_reset == err) )
     {
-        std::cout << "Disconnect " << std::endl;
+        //std::cout << "Disconnect " << std::endl;
         return;
     }
 	else 
