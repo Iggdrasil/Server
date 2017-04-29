@@ -3,7 +3,7 @@
 #include <boost/bind.hpp>
 #include <iostream>
 #include <boost\function.hpp>
-
+#include "TProcessor.h"
 
 std::string make_daytime_string()
 {
@@ -12,9 +12,19 @@ std::string make_daytime_string()
     return ctime(&now);
 }
 
-tcp_connection::pointer tcp_connection::create(boost::asio::io_service& ioserv)
+std::array<char, NET_PARAMS::NetworkBufferSize>::const_iterator tcp_connection::getBufferBegin()
 {
-    return pointer(new tcp_connection(ioserv));
+	return _recvBuffer.begin();
+}
+
+size_t tcp_connection::getCurrentBufferLen()
+{
+	return _currentBufferSize;
+}
+
+tcp_connection::pointer tcp_connection::create(boost::asio::io_service& ioserv, TMessageQueue* que)
+{
+    return pointer(new tcp_connection(ioserv, que));
 }
 
 boost::asio::ip::tcp::socket& tcp_connection::socket()
@@ -25,7 +35,7 @@ boost::asio::ip::tcp::socket& tcp_connection::socket()
 void tcp_connection::start_listen()
 {
 	// Ќачинаем читать вход€щее сообщение
-	socket_.async_receive(boost::asio::buffer(recv_buffer), 
+	socket_.async_receive(boost::asio::buffer(_recvBuffer),
 		boost::bind(&tcp_connection::handle_read, shared_from_this(),
 		boost::asio::placeholders::error,
 		boost::asio::placeholders::bytes_transferred));
@@ -45,10 +55,13 @@ void tcp_connection::handle_read(const boost::system::error_code& err, size_t le
 	{
 		try 
 		{
-			if(!recv_buffer.empty())
+			if(!_recvBuffer.empty())
 			{
-				
-				
+				// TODO хватит ли места? ≈сли на этот сокет придет несколько сообщений подр€д, как обрабатывать?
+				// »меет ли смысл делать еще один буфер, куда будем писать пока не придет полное сообщение
+				TMessage *msg = new TMessage(shared_from_this());
+				_currentBufferSize += len;
+				_messageQueue->enqueue(msg);		
 			}
 		}
 		catch (std::exception ex) 
@@ -76,8 +89,8 @@ void tcp_connection::handle_read(const boost::system::error_code& err, size_t le
 
 }
 
-tcp_connection::tcp_connection(boost::asio::io_service& io_service)
-    : socket_(io_service)
+tcp_connection::tcp_connection(boost::asio::io_service& io_service, TMessageQueue* que)
+    : socket_(io_service), _messageQueue(que), _currentBufferSize(0)
 {
 
 }

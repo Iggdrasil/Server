@@ -2,11 +2,11 @@
 #include <boost\tuple\tuple.hpp>
 #include <boost\logic\tribool.hpp>
 
-struct request;
+struct HttpRequest;
 
-class request_parser
+class HttpHeaderParser
 {
-	boost::tribool consume(request& req, char input);
+	boost::tribool consume(HttpRequest& req, char input);
 
 	static bool is_char(int c);
 
@@ -41,13 +41,13 @@ class request_parser
 	} state_;
 
 public:
-	request_parser();
-	~request_parser();
+	HttpHeaderParser();
+	~HttpHeaderParser();
 
 	void reset();
 
 	template <typename InputIterator>
-	boost::tuple<boost::tribool, InputIterator> parse(request& req,
+	boost::tuple<boost::tribool, InputIterator> parse(HttpRequest& req,
 		InputIterator begin, InputIterator end)
 	{
 		while (begin != end)
@@ -60,6 +60,6 @@ public:
 		return boost::make_tuple(result, begin);
 	}
 
-
+	
 };
 

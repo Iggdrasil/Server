@@ -48,16 +48,16 @@
     <ClInclude Include="TProxyProcessor.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="request_parser.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="request.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="header.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="tcp_client.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="HttpHeader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="HttpRequest.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="HttpHeaderParser.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -80,13 +80,13 @@
     <ClCompile Include="TProxyProcessor.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="request_parser.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="tcp_client.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="TMessage.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="HttpHeaderParser.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

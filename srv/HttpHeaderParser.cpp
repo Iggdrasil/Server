@@ -1,23 +1,23 @@
 #include "stdafx.h"
-#include "request_parser.h"
-#include "request.h"
+#include "HttpHeaderParser.h"
+#include "HttpRequest.h"
 
 
-request_parser::request_parser()
+HttpHeaderParser::HttpHeaderParser()
 	:state_(method_start)
 {
 }
 
-request_parser::~request_parser()
+HttpHeaderParser::~HttpHeaderParser()
 {
 }
 
-void request_parser::reset()
+void HttpHeaderParser::reset()
 {
 	state_ = method_start;
 }
 
-boost::tribool request_parser::consume(request& req, char input)
+boost::tribool HttpHeaderParser::consume(HttpRequest& req, char input)
 {
 	switch (state_)
 	{
@@ -193,7 +193,7 @@ boost::tribool request_parser::consume(request& req, char input)
 		}
 		else
 		{
-			req.headers.push_back(header());
+			req.headers.push_back(HttpHeader());
 			req.headers.back().name.push_back(input);
 			state_ = header_name;
 			return boost::indeterminate;
@@ -275,17 +275,17 @@ boost::tribool request_parser::consume(request& req, char input)
 	}
 }
 
-bool request_parser::is_char(int c)
+bool HttpHeaderParser::is_char(int c)
 {
 	return c >= 0 && c <= 127;
 }
 
-bool request_parser::is_ctl(int c)
+bool HttpHeaderParser::is_ctl(int c)
 {
 	return (c >= 0 && c <= 31) || (c == 127);
 }
 
-bool request_parser::is_tspecial(int c)
+bool HttpHeaderParser::is_tspecial(int c)
 {
 	switch (c)
 	{
@@ -299,7 +299,7 @@ bool request_parser::is_tspecial(int c)
 	}
 }
 
-bool request_parser::is_digit(int c)
+bool HttpHeaderParser::is_digit(int c)
 {
 	return c >= '0' && c <= '9';
 }

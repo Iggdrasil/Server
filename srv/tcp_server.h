@@ -1,7 +1,7 @@
 #pragma once
 #include <boost/asio.hpp>
 #include "tcp_connection.h"
-#include "SafeQueue.h"
+#include "TMessage.h"
 
 class tcp_server
 {
@@ -9,8 +9,10 @@ class tcp_server
 private:
     boost::asio::ip::tcp::acceptor _acceptor;
 
+	TMessageQueue* _messageQueue;
+
 public:
-    tcp_server(boost::asio::io_service& ioserv);
+    tcp_server(boost::asio::io_service& ioserv, TMessageQueue* que);
     ~tcp_server();
 
     void start_accept();

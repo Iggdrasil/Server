@@ -1,7 +1,7 @@
 #pragma once
 #include <string>
 
-struct header
+struct HttpHeader
 {
 	std::string name;
 	std::string value;

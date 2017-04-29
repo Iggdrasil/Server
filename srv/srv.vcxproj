@@ -86,9 +86,9 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="header.h" />
-    <ClInclude Include="request.h" />
-    <ClInclude Include="request_parser.h" />
+    <ClInclude Include="HttpHeader.h" />
+    <ClInclude Include="HttpRequest.h" />
+    <ClInclude Include="HttpHeaderParser.h" />
     <ClInclude Include="SafeQueue.h" />
     <ClInclude Include="NetParams.h" />
     <ClInclude Include="tcp_client.h" />
@@ -102,7 +102,7 @@
     <ClInclude Include="TMessage.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="request_parser.cpp" />
+    <ClCompile Include="HttpHeaderParser.cpp" />
     <ClCompile Include="tcp_client.cpp" />
     <ClCompile Include="TMessage.cpp" />
     <ClCompile Include="TProxyProcessor.cpp" />
