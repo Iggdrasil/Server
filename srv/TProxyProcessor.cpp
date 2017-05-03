@@ -10,6 +10,7 @@ using std::endl;
 
 void ProxyProcessor::makeHeader(const HttpRequest& head, std::string& _request)
 {	
+
 	std::stringstream request_stream;
 	request_stream << head.method << " /" /*<< head.uri */<< " HTTP/" << head.http_version_major << "." << head.http_version_minor << "\r\n";
 
@@ -21,7 +22,7 @@ void ProxyProcessor::makeHeader(const HttpRequest& head, std::string& _request)
 		}
 		request_stream << var.name << ": " << var.value << "\r\n";
 	}
-	request_stream << "Connection: Keep-Alive" << "\r\n";
+	request_stream << "Connection: Keep-Alive\r\n\r\n";
 	_request = request_stream.str();
 	return;
 
@@ -86,14 +87,13 @@ bool ProxyProcessor::Process(TMessage* msg)
 			boost::asio::ip::tcp::resolver resolver(_serv);
 			boost::asio::ip::tcp::resolver::query query(server, "http");
 			boost::asio::ip::tcp::resolver::iterator endpoint_iterator = resolver.resolve(query);
-			//endpoint_iterator++;
+
 			boost::asio::ip::tcp::socket socket(_serv);
 			boost::asio::connect(socket, endpoint_iterator);
 			boost::asio::write(socket, request);
 
 			boost::asio::streambuf response;
-			//boost::asio::read_until(socket, response, "\r\n");
-			boost::asio::read_until(socket, response, "HTTP");
+			boost::asio::read_until(socket, response, "\r\n");
 			
 
 			// Check that response is OK.
